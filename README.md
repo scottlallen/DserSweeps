@@ -24,7 +24,7 @@ This repository contains the code used for the analysis described in **our manus
 This guide provides high-level instructions for running the partialS/HIC analysis as described in **the manuscript**. The analysis is contained within a single R Markdown (.rmd) file.
 
 ## Prerequisites
-Much of the required software was installed via conda [installing minicoda](https://docs.anaconda.com/miniconda/miniconda-install/), but use of this method is optional. Ensure that you have the following software and libraries installed:
+Much of the required software was installed via [conda](https://docs.anaconda.com/miniconda/miniconda-install/), but use of this method is optional. Ensure that you have the following software and libraries installed:
 
 ### Software
 - BWA for mapping
