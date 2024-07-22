@@ -4,9 +4,6 @@ This repository contains the code used for the analysis described in **our manus
 ## Link to Published Manuscript
 Link to the published manuscript will be added here once available.
 
-## Data Accessibility
-DOIs or accession numbers for required files will be added here once available.
-
 ## Outline of major R Markdown sections
 ### 1. Mapping and Variant Discovery
 ### 2. Haplotype Phasing
@@ -115,3 +112,5 @@ Much of the required software was installed via [conda](https://docs.anaconda.co
 #### 12. GO Term Enrichment
 - Perform GO term enrichment analysis to identify biological processes associated with sweeps.
 
+## Data Accessibility
+DOIs or accession numbers for required files will be added here once available.
