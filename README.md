@@ -1,6 +1,12 @@
 # partialS/HIC Analysis Pipeline
 This repository contains the code used for the analysis described in **our manuscript**. The entire analysis is contained within a single R Markdown (.rmd) file, which is structured as outlined below.
 
+## Link to Published Manuscript
+Link to the published manuscript will be added here once available.
+
+## Data Accessibility
+DOIs or accession numbers for required files will be added here once available.
+
 ## Outline of major R Markdown sections
 ### 1. Mapping and Variant Discovery
 ### 2. Haplotype Phasing
