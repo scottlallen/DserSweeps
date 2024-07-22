@@ -4,7 +4,7 @@ author: "Scott L. Allen"
 output: html_document
 ---
 
-# Map DsGRP 
+# 1. Mapping and Variant Discovery 
 
 ```{shell, get DNA sequence files}
 
@@ -16,7 +16,9 @@ rsync -ahPv [PATH_TO]/*.fq.gz ./
 
 ```
 
-## conda bwa 
+## Map DsGRP
+
+### conda bwa 
 
 ```{shell, create conda environment for bwa}
 
@@ -32,7 +34,7 @@ conda install qualimap multiqc bwa samtools picard r-base
 
 ```
 
-## index ref (READY BUT MAKE REF AVAIL)
+### index ref
 
 ```{shell, index the reference genome for mapping}
 
@@ -48,7 +50,7 @@ bwa index drosophila_06Jul2018_A8VGg_noSpecialChar.fasta
 
 ```
 
-## bwa (READY BUT MAKE GFF AVAILABLE)
+### bwa
 
 ```{shell, example map DNA sequence reads to the reference genome}
 
@@ -132,9 +134,9 @@ chmod 755 ./*.slurm.sh
 
 ```
 
-# GATK genotyping 
+## GATK genotyping 
 
-## conda 
+### conda 
 
 ```{shell, create conda environment for genotyping}
 
@@ -152,9 +154,9 @@ conda activate gatk
 
 ```
 
-## data pre-processing for variant discovery 
+### data pre-processing for variant discovery 
 
-### duplicate removal 
+#### duplicate removal 
 
 ```{shell, example duplicate removal}
 
@@ -229,9 +231,9 @@ chmod 755 ./*.slurm.sh
 
 ```
 
-## HaplotypeCaller in GVCF mode 
+### HaplotypeCaller in GVCF mode 
 
-### index ref 
+#### index ref 
 
 ```{shell, index the reference genome for GATK}
 
@@ -262,8 +264,6 @@ picard CreateSequenceDictionary\
  O=${dict}.dict
 
 ```
-
-### call genotypes 
 
 #### AddReplaceReadGroups 
 
@@ -342,9 +342,9 @@ chmod 755 ./*.slurm.sh
 
 ```
 
-#### HaplotypeCaller 
+##### HaplotypeCaller 
 
-##### regions for parallel 
+###### regions for parallel 
 
 ```{shell, regions file to run HaplotypeCaller in parallel}
 
@@ -364,7 +364,7 @@ cut -f 1 ${refPath}.bed > seqnames.txt
 
 ```
 
-##### genotype 
+###### genotype 
 
 ```{shell, example HaplotypeCaller}
 
@@ -438,7 +438,7 @@ chmod 755 ./*.slurm.sh
 
 ```
 
-##### gather VCFs 
+###### gather VCFs 
 
 ```{shell, example GatherVcfs}
 
@@ -516,7 +516,7 @@ chmod 755 ./*.slurm.sh
 
 ```
 
-##### CombineGVCFs 
+###### CombineGVCFs 
 
 ```{shell, consolidate GVCFs}
 
@@ -550,7 +550,7 @@ done
 
 ```
 
-##### joint-call cohort 
+###### joint-call cohort 
 
 ```{shell, GenotypeGVCFs}
 
@@ -762,7 +762,9 @@ bedtools maskfasta -fi ${REF} -bed ${BED} -fo ${REF_MASKED}
 
 ```
 
-# Phase 
+# 2. Haplotype Phasing
+
+## Phase 
 
 ```{shell, phase genotyping with shapeit}
 
@@ -876,7 +878,7 @@ nohup [PATH_TO]/shapeit.v2.904.3.10.0-693.11.6.el7.x86_64/bin/shapeit\
 
 ```
 
-# Synthetic inbreeding 
+## Synthetic inbreeding 
 
 ```{python, synthetic_inbreed.py}
 
@@ -941,7 +943,7 @@ nohup python synthetic_inbreed.py\
 
 ```
 
-# ######################## partialS/HIC - empirical feature vectors
+# 3. Generate Empirical Feature Vectors
 
 ## conda 
 
@@ -1504,7 +1506,7 @@ print("total time spent calculating summary statistics and generating feature ve
 
 ```
 
-#### RUN (MISSING CODE FOR dser_partial_stats.txt YIGUAN)
+#### RUN
 
 ```{shell, run empirical_convert_to_FVs_python3_phased.py}
 
@@ -1653,7 +1655,7 @@ done
 
 ```
 
-# ######################## partialSHIC - constNe Ne 1M
+# 4. Train and predict under constant Ne demography
 
 ## Generate training data 
 
@@ -3760,9 +3762,9 @@ done
 
 ```
 
-# ######################## Demography (Stairway Plot 2)
+# 5. Demography Analysis (Stairway Plot 2)
 
-## Intergenic region (READY BUT MAKE SHORTNAME REF AVAILABLE)
+## Intergenic region
 
 ```{shell, install and run SNPdat to get intergenic}
 
@@ -4525,7 +4527,7 @@ getwd()
 
 ```
 
-# ######################## partialSHIC - SP2 median
+# 6. Train and predict under Stairway Plot 2 (median) demography
 
 ## Generate training data 
 
@@ -6652,7 +6654,7 @@ done
 
 ```
 
-# ######################## partialSHIC - SP2 2.5th (lci)
+# 7. Train and predict under Stairway Plot 2 (2.5th quantile) demography
 
 ## Generate training data 
 
@@ -8782,7 +8784,7 @@ done
 
 ```
 
-# ######################## partialSHIC - SP2 97.5th (uci)
+# 8. Train and predict under Stairway Plot 2 (97.5th quantile) demography
 
 ## Generate training data 
 
@@ -10913,7 +10915,7 @@ done
 
 ```
 
-# ######################## test on mismatched demography
+# 9. Test on mismatched demography
 
 ## train constNe 
 
@@ -11267,7 +11269,7 @@ done
 
 ```
 
-# ######################## Figure 2 ROC sweep vs other
+# 10. Figure 2 ROC sweep vs other
 
 ```{shell}
 
@@ -12197,7 +12199,7 @@ ggsave('Figure_2_ROC_SCOTT_4.png', width=10, height=9, unit='in', dpi=600)
 
 ```
 
-# ######################## Figure 3 Confusion matrix Analysis
+# 11. Figure 3 Confusion matrix analysis
 
 ```{shell}
 
@@ -13872,7 +13874,7 @@ ggsave('Figure_X_confusionMatrix_analysis_SCOTT_4.png', width=7, height=9, unit=
 
 ```
 
-# ######################## Figure 4
+# 12. Figure 4 Confusion matrix analsyis (focus on Neutral)
 
 ## Neutral 
 
@@ -13930,11 +13932,11 @@ ggsave('Figure_4_confusionMatrix_analysis_SCOTT_NEUTRAL.svg', width=7, height=9,
 
 ```
 
-# ######################## Figure 5 SP2 median confusion matrix
+# 13. Figure 5 SP2 median confusion matrix
 
 * Output from partialS/HIC
 
-# ######################## Figure 6 Pie and Bar
+# 14. Figure 6 Pie and Bar cart for partialS/HIC analysis for D. serrata
 
 ```{r}
 
@@ -14066,7 +14068,7 @@ ggsave("Figure_3_pie_and_bar_SCOTT_3_intergenic.svg", device = "svg", width=8, h
 
 ```
 
-# ######################## Figure 7 snpEff/snpSift
+# 15. Figure 7 Deleterious enrichment of sweep regions
 
 ### Install 
 
@@ -14103,7 +14105,7 @@ Dserrata_HiC.genome : Dserrata_HiC
 
 ```
 
-#### Step 2 Build database (NEED A LOT OF FILES)
+#### Step 2 Build database
 
 Build using gene annotations and reference sequences
 
@@ -14119,6 +14121,39 @@ The reference genome sequence: This is the sequence of all chromosomes in the ge
 Gene annotations files: This is the information on where the genes, transcripts and exons are in the genome. Typically, from files in GTF, GeneBank, GFF, or RefSeq formats
 
 Sequences of CDS or Proteins from the genome. These are used to check that SnpEff's database is consistent and doesn't have errors (see sections Checking CDS sequences and Checking Protein sequences)
+
+```{python, replace_protein_ids.py}
+import sys
+
+def replace_protein_ids(protein_fasta, mapping_file, output_fasta):
+    protein_transcript_map = {}
+    with open(mapping_file, 'r') as map_file:
+        for line in map_file:
+            protein_id, transcript_id = line.strip().split(' ')
+            protein_transcript_map[protein_id] = transcript_id
+
+    with open(protein_fasta, 'r') as fasta_file:
+        with open(output_fasta, 'w') as output_file:
+            for line in fasta_file:
+                if line.startswith('>'):
+                    header = line.strip()
+                    protein_id = header.split()[0][1:]
+                    if protein_id in protein_transcript_map:
+                        transcript_id = protein_transcript_map[protein_id]
+                        header = header.replace(protein_id, transcript_id)
+                    output_file.write(header + '\n')
+                else:
+                    output_file.write(line)
+
+if __name__ == '__main__':
+    if len(sys.argv) != 4:
+        print('Usage: python script.py protein_fasta mapping_file output_fasta')
+    else:
+        protein_fasta = sys.argv[1]
+        mapping_file = sys.argv[2]
+        output_fasta = sys.argv[3]
+        replace_protein_ids(protein_fasta, mapping_file, output_fasta)
+```
 
 ```{shell}
 
@@ -14975,7 +15010,7 @@ dev.off()
 
 ```
 
-# ######################## Empirical stats 
+# 16. Empirical prediction statistics
 
 ```{r}
 
@@ -15039,7 +15074,7 @@ sum(predPeaks$MODIFIER, na.rm=TRUE)
 ```
 
 
-# ######################## GO term enrichment
+# 17. GO term enrichment
 
 ```{bash}
 
