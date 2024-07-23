@@ -1,5 +1,5 @@
 # partialS/HIC Analysis Pipeline
-This repository contains the code used for the analysis described in **our manuscript**. The entire analysis is contained within a single R Markdown (.rmd) file, which is structured as outlined below.
+This repository contains the code used for the analysis described in the paper titled **"The impacts of positive selection on genomic variation in Drosophila serrata: insights from a deep learning approach"**. The entire analysis is contained within a single R Markdown (.rmd) file, which is structured as outlined below.
 
 ## Link to Published Manuscript
 Link to the published manuscript will be added here once available.
