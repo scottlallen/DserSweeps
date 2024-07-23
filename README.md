@@ -113,4 +113,4 @@ Much of the required software was installed via [conda](https://docs.anaconda.co
 - Perform GO term enrichment analysis to identify biological processes associated with sweeps.
 
 ## Data Accessibility
-DOIs or accession numbers for required files will be added here once available.
+Hi-C scaffolded D. serrata genome and NCBI annotation lift-over are available at https://doi.org/10.48610/ce96855.
